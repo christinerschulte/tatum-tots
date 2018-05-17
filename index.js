@@ -14,6 +14,7 @@ const app = {
 
     renderListItem(flick){
         const item = document.createElement('li')
+        item.dataset.id = flick.id
         item.textContent = flick.name
         return item
     },
@@ -26,7 +27,7 @@ const app = {
         }
 
         this.flicks.push(flick)
-        
+
         const item = this.renderListItem(flick)
         this.list.appendChild(item)
         f.reset()
