@@ -17,6 +17,9 @@ const app = {
         const item = this.template.cloneNode(true)
         item.classList.remove('template')
         item.dataset.id = flick.id
+        item.dataset.fav = flick.fav
+        flick.fav = 'false'
+
         item
             .querySelector('.flickName')
             .textContent = flick.name
@@ -43,8 +46,8 @@ const app = {
         const listItem = ev.target
         listItem.style.backgroundColor = 'gold'
 
-        // const i = this.flicks.indexOf(flick)
-        // this.flicks.splice(i,1)
+        flick.fav = 'true'
+        
     },
 
     handleSubmit(ev){
