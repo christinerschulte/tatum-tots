@@ -24,6 +24,10 @@ const app = {
         item
             .querySelector('button.delete')
             .addEventListener('click', this.removeListItem.bind(this, flick))
+
+        item
+        .querySelector('button.favorite')
+        .addEventListener('click', this.favListItem.bind(this, flick))
         return item
     },
 
@@ -33,6 +37,14 @@ const app = {
 
         const i = this.flicks.indexOf(flick)
         this.flicks.splice(i,1)
+    },
+
+    favListItem(flick, ev){
+        const listItem = ev.target
+        listItem.style.backgroundColor = 'gold'
+
+        // const i = this.flicks.indexOf(flick)
+        // this.flicks.splice(i,1)
     },
 
     handleSubmit(ev){
