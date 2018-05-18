@@ -7,6 +7,10 @@ main{
     margin-bottom: 0;
 }
 
+li .button-group{
+    margin: 0.5rem auto;
+}
+
 .flickName{
     margin: 0 0.75rem;
 }

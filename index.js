@@ -20,7 +20,19 @@ const app = {
         item
             .querySelector('.flickName')
             .textContent = flick.name
+
+        item
+            .querySelector('button.delete')
+            .addEventListener('click', this.removeListItem.bind(this, flick))
         return item
+    },
+
+    removeListItem(flick, ev){
+        const listItem = ev.target.closest('.flick')
+        listItem.remove()
+
+        const i = this.flicks.indexOf(flick)
+        this.flicks.splice(i,1)
     },
 
     handleSubmit(ev){
@@ -42,5 +54,5 @@ const app = {
 app.init({
     formSelector:'#flickForm',
     listSelector: '#flickList',
-    templateSelector: '.flick.template'
+    templateSelector: '.flick.template',
 })
