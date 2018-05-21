@@ -38,12 +38,12 @@ class App{
             this.favListItem.bind(this, item, flick)
         )
 
-        // item
-        // .querySelector('button.up')
-        // .addEventListener(
-        //     'click', 
-        //     this.moveItemUp.bind(this, flick)
-        // )
+        item
+        .querySelector('button.edit')
+        .addEventListener(
+            'click', 
+            this.toggleEditable.bind(this, item, flick)
+        )
 
         // item
         // .querySelector('button.down')
@@ -67,16 +67,36 @@ class App{
         
     }
 
-    moveItemUp(flick, ev){
-        const listItem = ev.target.closest('.flick')
-        const i = ev.indexOf(listItem) 
-        
+    toggleEditable(item, flick, ev){
+        const nameField = item.querySelector('.flickName')
+        const btn = ev.target
+
+        if(nameField.isContentEditable){
+            nameField.contentEditable = false
+
+            btn.textContent = 'edit'
+            btn.classList.remove('success')
+
+            flick.name = nameField.textContent
+        } else {
+            nameField.contentEditable = true
+            nameField.focus()
+
+            btn.textContent = 'save'
+            btn.classList.add('success')
+        }
     }
 
-    moveItemDown(flick, ev){
-        const listItem = ev.target.closest('.flick')
-        const i = this.flicks.indexOf(flick)        
-    }
+    // moveItemUp(flick, ev){
+    //     const listItem = ev.target.closest('.flick')
+    //     const i = ev.indexOf(listItem) 
+        
+    // }
+
+    // moveItemDown(flick, ev){
+    //     const listItem = ev.target.closest('.flick')
+    //     const i = this.flicks.indexOf(flick)        
+    // }
 
     handleSubmit(ev){
         const f = ev.target
