@@ -20,9 +20,12 @@ class App{
         item.dataset.fav = flick.fav
         flick.fav = false
 
-        item
-            .querySelector('.flickName')
-            .textContent = flick.name
+        const nameSpan = item.querySelector('.flickName')
+        nameSpan.textContent = flick.name
+        nameSpan.addEventListener(
+            'keypress',
+            this.saveOnEnter.bind(this, item, flick)
+        )
 
         item
             .querySelector('button.delete')
@@ -69,7 +72,7 @@ class App{
 
     toggleEditable(item, flick, ev){
         const nameField = item.querySelector('.flickName')
-        const btn = ev.target
+        const btn = item.querySelector('button.edit')
 
         if(nameField.isContentEditable){
             nameField.contentEditable = false
@@ -84,6 +87,12 @@ class App{
 
             btn.textContent = 'save'
             btn.classList.add('success')
+        }
+    }
+
+    saveOnEnter(item, flick, ev){
+        if(ev.key === 'Enter'){
+            this.toggleEditable(item, flick)
         }
     }
 
