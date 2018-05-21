@@ -28,14 +28,14 @@ class App{
             .querySelector('button.delete')
             .addEventListener(
                 'click', 
-                this.removeListItem.bind(this, flick)
+                this.removeListItem.bind(this, item, flick)
             )
 
         item
         .querySelector('button.favorite')
         .addEventListener(
             'click', 
-            this.favListItem.bind(this, flick)
+            this.favListItem.bind(this, item, flick)
         )
 
         // item
@@ -55,19 +55,15 @@ class App{
         return item
     }
 
-    removeListItem(flick, ev){
-        const listItem = ev.target.closest('.flick')
-        listItem.remove()
+    removeListItem(item, flick, ev){
+        item.remove()
 
         const i = this.flicks.indexOf(flick)
         this.flicks.splice(i,1)
     }
 
-    favListItem(flick, ev){
-        const listItem = ev.target
-        listItem.style.backgroundColor = 'gold'
-
-        flick.fav = true
+    favListItem(item, flick, ev){
+        flick.fav = item.classList.toggle('favorite')
         
     }
 
@@ -87,6 +83,7 @@ class App{
         const flick = {
             id: ++this.max,
             name: f.flickName.value,
+            fav: false,
         }
 
         this.flicks.unshift(flick)
